@@ -2,8 +2,8 @@ from typing import Union
 
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from sritter.serializers import User, Post
 
-from pydantic import BaseModel
 
 origins = [
     "http://localhost",
@@ -20,15 +20,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-class Post(BaseModel):
-    text: str
-    #description: Union[str, None] = None
-
-class User(BaseModel):
-    email: str
-    password: str
-
 
 @app.get("/")
 def read_root():
